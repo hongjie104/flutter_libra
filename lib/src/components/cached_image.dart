@@ -6,12 +6,14 @@ class CachedImage extends StatelessWidget {
   final double? width;
   final double? height;
   final BoxFit? fit;
+  final Widget? placeholder;
   const CachedImage({
     super.key,
     this.imageUrl,
     this.width,
     this.height,
     this.fit,
+    this.placeholder,
   });
 
   @override
@@ -24,9 +26,11 @@ class CachedImage extends StatelessWidget {
       width: width,
       height: height,
       fit: fit,
-      placeholder: (context, url) => const Center(
-        child: CircularProgressIndicator(),
-      ),
+      placeholder: (context, url) =>
+          placeholder ??
+          const Center(
+            child: CircularProgressIndicator(),
+          ),
       errorWidget: (context, url, error) => _buildError(),
     );
   }
