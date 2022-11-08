@@ -24,6 +24,9 @@ class CachedImage extends StatelessWidget {
       width: width,
       height: height,
       fit: fit,
+      placeholder: (context, url) => const Center(
+        child: CircularProgressIndicator(),
+      ),
       errorWidget: (context, url, error) => _buildError(),
     );
   }
